@@ -14,11 +14,12 @@ softwareType: library
 description:
   en:
     localisedName: jeap-bptestagent-api
-    shortDescription: TODO (Max. 150 characters)
+    shortDescription: This library provides an interface for implementing a REST interface in a TestAgent towards the jEAP test orchestrator.
     longDescription: >
-      TODO (Min. 150 characters)
+      This library provides an interface for implementing a rest interface in a TestAgent or Simulator towards the orchestrator.
+      Test agent implementations can use this library to implement the standardized REST interface required by the jEAP test orchestrator.
     features:
-      - TODO
+      - Standardized REST interface for TestAgents to interact with the jEAP test orchestrator.
 legal:
   license: Apache-2.0
 maintenance:

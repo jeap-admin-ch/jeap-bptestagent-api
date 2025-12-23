@@ -1,8 +1,8 @@
 publiccodeYmlVersion: 0.4.0
 name: jeap-bptestagent-api
 applicationSuite: jEAP
-softwareVersion: 2.47.0
-releaseDate: 2025-12-19
+softwareVersion: 2.48.0
+releaseDate: 2025-12-23
 url: "https://github.com/jeap-admin-ch/jeap-bptestagent-api.git"
 landingURL: "https://github.com/jeap-admin-ch/jeap"
 platforms:

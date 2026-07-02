@@ -6,6 +6,49 @@ A central **BusinessTest Orchestrator** runs a test case by coordinating one or 
 process. `jeap-bptestagent-api` defines the contract between the orchestrator and the TestAgents; the
 orchestrator service itself is out of scope for this library.
 
+## System overview
+
+```mermaid
+flowchart LR
+    subgraph FA_A["Business Application A"]
+        TestAgentA["TestAgent A"]
+        MicroServiceA["Microservice A"]
+        MicroServiceB["Microservice B"]
+        TestAgentA --> MicroServiceB
+        MicroServiceA <--> MicroServiceB
+    end
+
+    subgraph FA_B["Business Application B"]
+        TestAgentB["TestAgent B"]
+        MicroServiceC["Microservice C"]
+        MicroServiceD["Microservice D"]
+        TestAgentB --> MicroServiceC
+        MicroServiceC <--> MicroServiceD
+    end
+
+    subgraph ORCH["Test Orchestrator"]
+        direction TB
+        Prepare --> Update --> Act --> Verify --> DB[("DB")] --> Report --> CleanUp
+    end
+
+    JIRA["JIRA"]
+
+    TestAgentA <==> ORCH
+    TestAgentB <==> ORCH
+    ORCH ==> JIRA
+
+    style ORCH fill:#FFE9A8,stroke:#B8860B
+    style JIRA fill:#F2A0A0,stroke:#B22222
+    style FA_A fill:#C8E6C0,stroke:#333,stroke-dasharray: 5 5
+    style FA_B fill:#C8E6C0,stroke:#333,stroke-dasharray: 5 5
+    style TestAgentA fill:#FFE9A8,stroke:#B8860B
+    style TestAgentB fill:#FFE9A8,stroke:#B8860B
+    style MicroServiceA fill:#AECBFA,stroke:#333
+    style MicroServiceB fill:#AECBFA,stroke:#333
+    style MicroServiceC fill:#AECBFA,stroke:#333
+    style MicroServiceD fill:#AECBFA,stroke:#333
+```
+
 ## Two directions of communication
 
 The interaction is bidirectional and both directions are plain JSON over HTTP:

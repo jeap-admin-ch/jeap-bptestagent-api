@@ -17,7 +17,7 @@ runtime (web server, persistence, callbacks).
 
 ## Repository layout
 
-```
+```text
 pom.xml                                                  # Single-module POM (packaging=jar)
 src/main/java/ch/admin/bit/jeap/testagent/api/
   TestAgentOperations.java                               # The REST interface the orchestrator calls
@@ -62,6 +62,9 @@ Jenkinsfile, publiccode.yml, CHANGELOG.md, LICENSE, THIRD-PARTY-LICENSES.md
 
 When changing the contract (an operation, a DTO field, or a callback), update the matching focused
 file under [docs/](docs/) (one topic per file) and the documentation index in the README.
+
+Validate that files under `docs/*.md` are valid Markdown compatible with a Docusaurus site. Also
+validate that Mermaid diagrams in the Markdown files use correct Mermaid syntax.
 
 ## Versioning
 

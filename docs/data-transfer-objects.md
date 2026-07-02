@@ -1,7 +1,8 @@
 # Data transfer objects
 
-All DTOs are immutable Lombok types with a `@Builder` and a forced private no-args constructor for
-Jackson deserialization. Most free-form payloads travel in a `Map<String, String> data` field; the
+DTOs use `@Builder` and a forced private no-args constructor for Jackson deserialization. Most are
+fully immutable (`@Value`); `PreparationDto` and `NotificationDto` use `@Getter`/`@Builder` instead
+and `PreparationDto.data` exposes a `@Setter` for post-construction updates. Most free-form payloads travel in a `Map<String, String> data` field; the
 builders expose it via `@Singular("data")`, so entries can be added one at a time
 (`.data("key", "value")`) or as a whole map. The keys and values in `data`, and the string names
 (`action`, `testCase`, `notification`), are agreed per test case between orchestrator and agent.
@@ -10,17 +11,17 @@ builders expose it via `@Singular("data")`, so entries can be added one at a tim
 
 ### `PreparationDto` — request body of `prepare`
 
-| Field             | Type                  | Notes                                                              |
-|-------------------|-----------------------|--------------------------------------------------------------------|
-| `testCase`        | `String`              | Required (`@NonNull`). Name of the test case to prepare.           |
-| `data`            | `Map<String, String>` | Optional setup data for the agent.                                 |
+| Field             | Type                  | Notes                                                                                        |
+|-------------------|-----------------------|----------------------------------------------------------------------------------------------|
+| `testCase`        | `String`              | Required (`@NonNull`). Name of the test case to prepare.                                     |
+| `data`            | `Map<String, String>` | Optional setup data for the agent.                                                           |
 | `callbackBaseUrl` | `String`              | Required (`@NonNull`). Orchestrator base URL for callbacks; persist it against the `testId`. |
 
 ### `PreparationResultDto` — response body of `prepare`
 
-| Field  | Type                  | Notes                                            |
-|--------|-----------------------|--------------------------------------------------|
-| `data` | `Map<String, String>` | Optional data the agent returns to the orchestrator. |
+| Field  | Type                  | Notes                                                 |
+|--------|-----------------------|-------------------------------------------------------|
+| `data` | `Map<String, String>` | Optional data the agent returns to the orchestrator.  |
 
 ### `DynamicDataDto` — request body of `update`
 
@@ -37,9 +38,9 @@ builders expose it via `@Singular("data")`, so entries can be added one at a tim
 
 ### `ActionResultDto` — response body of `act`
 
-| Field  | Type                  | Notes                                         |
-|--------|-----------------------|-----------------------------------------------|
-| `data` | `Map<String, String>` | Optional result data returned to the orchestrator. |
+| Field  | Type                  | Notes                                               |
+|--------|-----------------------|-----------------------------------------------------|
+| `data` | `Map<String, String>` | Optional result data returned to the orchestrator.  |
 
 ### `ReportDto` — response body of `verify`
 
@@ -80,11 +81,11 @@ These are sent by the agent to the orchestrator's callback endpoints; see
 
 ### `LogDto`
 
-| Field        | Type       | Notes                                                            |
-|--------------|------------|------------------------------------------------------------------|
-| `logMessage` | `String`   | Required (`@NonNull`). The log text.                             |
+| Field        | Type       | Notes                                                                           |
+|--------------|------------|---------------------------------------------------------------------------------|
+| `logMessage` | `String`   | Required (`@NonNull`). The log text.                                            |
 | `logLevel`   | `LogLevel` | Required (`@NonNull`). Spring Boot `org.springframework.boot.logging.LogLevel`. |
-| `source`     | `String`   | Required (`@NonNull`). Name of the emitting TestAgent.          |
+| `source`     | `String`   | Required (`@NonNull`). Name of the emitting TestAgent.                          |
 
 ## Related
 

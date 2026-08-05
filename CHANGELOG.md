@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [7.1.0] - 2026-08-05
+
+### Dependencies
+- Updated dependencies
+
 ## [7.0.1] - 2026-08-02
 
 ### Dependencies

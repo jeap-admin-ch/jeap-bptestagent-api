@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [10.17.1] - 2026-11-01
+
+### Dependencies
+- **ch.admin.bit.jeap:jeap-spring-boot-parent**: 41.29.0 → 41.29.1 (patch)
+
 ## [10.17.0] - 2026-10-28
 
 ### Dependencies
